@@ -1,45 +1,55 @@
 import React, { useState, useEffect } from 'react'
 import './App.css';
-
 import { Button, Form, FormGroup, Label, Input, 
   FormText, Nav, NavItem, Dropdown, DropdownItem,
    DropdownToggle, DropdownMenu, NavLink,
    Container, Row, Col 
   } from 'reactstrap';
-  import {
-    FaFacebook,
-    FaInstagram,
-    FaYoutube,
-    FaTwitter} from 'react-icons/fa';
 import Single from './Single';
-import FromUser from './SingleFromUser';
-  
+import Adwords from './Adwords';
+import article1 from './article1.jpg';
+import article2 from './article2.jpg';
+import article3 from './article3.jpg';
+import meow from './meow.jpg';
+import catart from './catart.jpg';
 
 function App() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen(!dropdownOpen);
   
   const [email, setEmail] = useState('');
-    const [textArea, setTextArea] = useState('');
-    // const now = new Date();
-    // const day = now.getDay();
-    // const month = now.getMonth();
-    // const year = now.getFullYear();
+  const [textArea, setTextArea] = useState('');
+
+    var now = new Date();
+    var day = now.getDate();
+    var month = now.getMonth()+1;
+    if (month<10){
+      month = "0"+ month;
+    }
+    var year = now.getFullYear();
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+
+    const showAlert = () => {
+      console.log('uzupełnij')
+    }
 
     const handleSubmit = (e) => {
       e.preventDefault();
-      console.log('hello nerd');
-    if (!email || !textArea) {
-      console.log('uzupełnij dane')
+      
+    if (!email && textArea){
+      showAlert();
     } 
-       else {
-        setTextArea(e.target.value);
+    if (!textArea && email){
+      showAlert();
+    }
+    if (email && textArea) {
+      setTextArea(e.target.value);
           setEmail(e.target.value);
           console.log(email);
       console.log(textArea);
-        }
-      }
-        
+    }
+  }
   return (
     <section className="blog-container col-lg-12">
       <Nav pills>
@@ -75,9 +85,13 @@ function App() {
         <Row>
           <Col lg="12">
             <header className="title text-center">
-        <h1>Welcome to the Cat Blog</h1>
+        <div className="uppercase"></div>
+        <h1>Witaj na Kocim Blogu</h1>
         <h3>Mrauuuu...</h3>
         <div className="uppercase"></div>
+        <div>
+            <img src={meow} alt="" className="meow-img"></img>
+        </div>
       </header>
           </Col>
         </Row>
@@ -85,21 +99,52 @@ function App() {
           <Col lg="9" md="9" sm="12" 
           className="main-text">
             <Single />
+            <div>
+              <img src={catart} alt="photo" className="meow-img"></img>
+            </div>
           </Col>
           <Col lg="3" md="3" sm="12" className="side-text">
           <div className="blog-t">
-               <h4>Lorem ipsum dolor sit amet, 
-                 consectetur adipiscing elit, sed do eiusmod 
-                 tempor incididunt ut labore et dolore magna 
-                 aliqua. Ut enim ad minim veniam, quis nostrud 
-                 ercitation ullamco laboris nisi ut aliquip ex
-                  ea commodo consequat. Duis aute irure dolor 
-                  in reprehenderit in voluptate velit esse cill
-                   dolore eu fugiat nulla pariatur. Excepteur 
-                   sint occaecat cupidatat non proident, sunt 
-                   in culpa qui officiadeserunt mollit anim id est laborum.</h4>
+            <Row className="text-center side">
+                {/* {hours} : {minutes}  {'   '} dodać aktualizcję*/}
+                <div className="time">
+                  {day} : {month} : {year}
+                </div>
+              
+              <div className="popular-article ">
+                <h5>Właściwa karma a zdrowie kota</h5>
+                <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                 dolore eu fugiat nulla pariatur.</h6>
+                  <img src={article1} alt="photo"
+                  className="article-img"></img>
+              </div>
+              
+            </Row>
+               <Adwords />
+               <Row>
+               
+                  <div className="popular-article ">
+                <h5>Żywienie kociąt</h5>
+                <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                 dolore eu fugiat nulla pariatur.</h6>
+                  <img src={article2} alt="photo"
+                  className="article-img"></img>
+              </div>
+                
+               </Row>
+               <Row>
+               
+                  <div className="popular-article ">
+                <h5>Polecane rasy kotów</h5>
+                <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                 dolore eu fugiat nulla pariatur.</h6>
+                  <img src={article3} alt="photo"
+                  className="article-img"></img>
+              </div>
+                
+               </Row>
+
             </div>
-            
           </Col>
         </Row>
 
@@ -108,7 +153,8 @@ function App() {
      <section className="blog-form col-lg-12">
       <h3 className="text-center" style={{padding:"2rem"}}>Chcesz współtworzyć tego bloga? 
       Znasz intersujące nowinki?</h3>
-      <h4 className="text-center" style={{padding:"0.5rem"}}>Wpisz swoją wiadomość w polu poniżej aby zobaczyć treść na blogu</h4>
+      <h4 className="text-center" style={{padding:"0.5rem"}}>Wpisz swoją wiadomość w 
+      polu poniżej a być może dodamy Twój artykuł ;)</h4>
       <Form style={{padding: "2rem"}}
       onSubmit={handleSubmit}>
       <FormGroup>

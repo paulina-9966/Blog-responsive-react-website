@@ -59,3 +59,82 @@ header {
   box-shadow: 5px 10px darkslategrey;
   padding-bottom: 2rem;
 }
+.adword-container{
+  height: 30vh;
+  background-image: url('./cat.jpg');
+  border-radius: 15px;
+  z-index: 4;
+}
+.adword-button{
+ 
+  position: relative;
+  left: 5px;
+  bottom: -50px;
+  
+}
+.cat {
+  float: left;
+  margin: 5px;
+}
+.popular-article{
+  border-style: groove;
+  border-radius: 10px;
+
+}
+.article-img{
+  width: 100%;
+  object-fit: cover;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-bottom: 1rem;
+  padding-top: 0;
+}
+.article-img:hover{
+  filter: drop-shadow(8px 8px 10px gray);
+}
+.time{
+  position: absolute;
+  right: 50px;
+  top: -30px;
+ 
+}
+
+.meow-img{
+  width: 100%;
+  max-height: 80vh;
+  padding: 2rem;
+}
+
+@media (min-width: 576px) { 
+  .meow-img{
+    width: 100%;
+    max-height: 52vh;
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 768px) { 
+  .meow-img{
+    width: 100%;
+    max-height: 68vh;
+    padding: 2rem;
+  }
+}
+
+
+@media (min-width: 992px) { 
+  .meow-img{
+    width: 100%;
+    max-height: 80vh;
+    padding: 2rem;
+  }
+ }
+
+
+@media (min-width: 1200px) { 
+  .meow-img{
+    width: 100%;
+    max-height: 100vh;
+    padding: 2rem;
+  }
+ }
