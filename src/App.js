@@ -3,7 +3,7 @@ import './App.css';
 import { Button, Form, FormGroup, Label, Input, 
   FormText, Nav, NavItem, Dropdown, DropdownItem,
    DropdownToggle, DropdownMenu, NavLink,
-   Container, Row, Col 
+   Container, Row, Col, Alert
   } from 'reactstrap';
 import Single from './Single';
 import Adwords from './Adwords';
@@ -20,35 +20,32 @@ function App() {
   const [email, setEmail] = useState('');
   const [textArea, setTextArea] = useState('');
 
-    var now = new Date();
-    var day = now.getDate();
-    var month = now.getMonth()+1;
-    if (month<10){
-      month = "0"+ month;
-    }
-    var year = now.getFullYear();
-    var hours = now.getHours();
-    var minutes = now.getMinutes();
+  function showAlert() {
+    var item = document.getElementById("alert-div");
+    item.innerText = "Uzupełnij wszystkie pola";
 
-    const showAlert = () => {
-      console.log('uzupełnij')
-    }
+    setTimeout( function remove() {
+      item.innerText=" ";
+    }, 3000)
+  }
+    
 
     const handleSubmit = (e) => {
       e.preventDefault();
       
     if (!email && textArea){
       showAlert();
-    } 
-    if (!textArea && email){
-      showAlert();
-    }
-    if (email && textArea) {
+     
+    } else {
+       if (!textArea && email){
+       showAlert();
+    } else {
+      if (email && textArea) {
       setTextArea(e.target.value);
           setEmail(e.target.value);
           console.log(email);
       console.log(textArea);
-    }
+    }}}
   }
   return (
     <section className="blog-container col-lg-12">
@@ -106,11 +103,7 @@ function App() {
           <Col lg="3" md="3" sm="12" className="side-text">
           <div className="blog-t">
             <Row className="text-center side">
-                {/* {hours} : {minutes}  {'   '} dodać aktualizcję*/}
-                <div className="time">
-                  {day} : {month} : {year}
-                </div>
-              
+                
               <div className="popular-article ">
                 <h5>Właściwa karma a zdrowie kota</h5>
                 <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
@@ -155,17 +148,18 @@ function App() {
       Znasz intersujące nowinki?</h3>
       <h4 className="text-center" style={{padding:"0.5rem"}}>Wpisz swoją wiadomość w 
       polu poniżej a być może dodamy Twój artykuł ;)</h4>
+      <div id="alert-div">  </div>
       <Form style={{padding: "2rem"}}
       onSubmit={handleSubmit}>
       <FormGroup>
         <Label for="exampleEmail">Email</Label>
-        <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" 
+        <Input type="email" name="email" id="exampleEmail" placeholder="user@gmail.com" 
         // value={email}
         onChange={(e)=> setEmail(e.target.value)}/>
       </FormGroup>
       <FormGroup>
         <Label for="exampleText">Text Area</Label>
-        <Input type="textarea" name="text" id="exampleText" 
+        <Input type="textarea" name="text" id="exampleText" placeholder="Hi! I heard about something interesting..."
         // value={textArea}
         onChange={(e)=> setTextArea(e.target.value)}/>
       </FormGroup>

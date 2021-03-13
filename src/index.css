@@ -66,11 +66,10 @@ header {
   z-index: 4;
 }
 .adword-button{
- 
   position: relative;
-  left: 5px;
-  bottom: -50px;
-  
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 .cat {
   float: left;
@@ -92,11 +91,10 @@ header {
 .article-img:hover{
   filter: drop-shadow(8px 8px 10px gray);
 }
-.time{
-  position: absolute;
-  right: 50px;
-  top: -30px;
- 
+#alert-div{
+  text-align: center;
+  color: red;
+  font-weight: 700;
 }
 
 .meow-img{

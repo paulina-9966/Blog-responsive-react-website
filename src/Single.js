@@ -20,7 +20,7 @@ const Single = () => {
         <div className="blog-social text-center">
           <h6>{dataD}</h6>
           <div className="social-icons">
-          <div class="social text-center">
+          <div className="social text-center">
               <FaFacebook/>
              <FaInstagram/>
               <FaYoutube/>
